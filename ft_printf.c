@@ -37,11 +37,21 @@ static void	put_pointer(char *str, int *l, int *i, va_list args)
 
 static void	check_print(char *str, int *l, int *i, va_list args)
 {
-	put_hexa(str, l, i, args);
-	put_char_str(str, l, i, args);
-	put_int(str, l, i, args);
-	put_pointer(str, l, i, args);
-	(*i)++;
+	if (str[*i] == '%')
+	{
+		(*i)++;
+		put_hexa(str, l, i, args);
+		put_char_str(str, l, i, args);
+		put_int(str, l, i, args);
+		put_pointer(str, l, i, args);
+		(*i)++;
+	}
+	else
+	{
+		ft_putchar_fd(str[*i], 1);
+		(*i)++;
+		(*l)++;
+	}
 }
 
 int	ft_printf(char *str, ...)
@@ -55,19 +65,12 @@ int	ft_printf(char *str, ...)
 	va_start(args, str);
 	while (str[i])
 	{
-		if (str[i] == '%' && str[i + 1] == '\0')
+		if (str[i] == '%' && str[(i) + 1] == '\0')
 		{
-			return (-1);
 			va_end(args);
+			return (-1);
 		}
-		if (str[i++] == '%')
-			check_print(str, &l, &i, args);
-		else
-		{
-			ft_putchar_fd(str[i], 1);
-			i++;
-			l++;
-		}
+		check_print(str, &l, &i, args);
 	}
 	va_end(args);
 	return (l);
