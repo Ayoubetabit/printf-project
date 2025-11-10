@@ -20,7 +20,7 @@ void	putnbrbase(unsigned long n, char *base, int *i, char c)
 		putnbrbase(n / blen, base, i, c);
 	if (c == 'x')
 	{
-		if (base[n % blen] >= 'A' && base[n % blen] <= 'Z')
+		if (base[n % blen] >= 'A' && base[n % blen] <= 'F')
 			ft_putchar_fd(ft_tolower(base[n % blen]), 1);
 		else
 			ft_putchar_fd(base[n % blen], 1);
@@ -40,6 +40,11 @@ int	ft_nbrlen(long n, char *base)
 
 	l = ft_strlen(base);
 	x = 1;
+	if (n < 0)
+	{
+		x++;
+		n = -n;
+	}
 	while (n >= l)
 	{
 		n = n / l;
@@ -50,11 +55,11 @@ int	ft_nbrlen(long n, char *base)
 
 void	put_hexa(char *str, int *l, int *i, va_list args)
 {
-	int	n;
+	unsigned int	n;
 
 	if ((str[*i] == 'x' || str[*i] == 'X'))
 	{
-		n = va_arg(args, int);
+		n = va_arg(args, unsigned int);
 		if (n < 0)
 		{
 			ft_putchar_fd('-', 1);
@@ -102,6 +107,5 @@ void	put_int(char *str, int *l, int *i, va_list args)
 	{
 		a = va_arg(args, unsigned int);
 		putnbrbase(a, "0123456789", l, str[*i]);
-		(*l) += ft_nbrlen(a, "0123456789");
 	}
 }
