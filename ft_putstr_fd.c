@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atabit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 20:00:40 by atabit            #+#    #+#             */
-/*   Updated: 2025/11/12 20:09:17 by atabit           ###   ########.fr       */
+/*   Created: 2025/10/22 23:02:08 by atabit            #+#    #+#             */
+/*   Updated: 2025/11/12 19:45:13 by atabit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main()
+void	ft_putstr_fd(char *s, int fd)
 {
-	printf("%d",ft_printf("cs%r%"));
-	printf("\n");
-	printf("%d",printf("cs%r%"));
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
 }

@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atabit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 20:00:40 by atabit            #+#    #+#             */
-/*   Updated: 2025/11/12 20:09:17 by atabit           ###   ########.fr       */
+/*   Created: 2025/10/22 23:12:55 by atabit            #+#    #+#             */
+/*   Updated: 2025/11/12 19:44:58 by atabit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main()
+void	ft_putnbr_fd(int n, int fd)
 {
-	printf("%d",ft_printf("cs%r%"));
-	printf("\n");
-	printf("%d",printf("cs%r%"));
+	char	x;
+
+	if (n == -2147483648)
+	{
+		ft_putstr_fd("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		write (fd, "-", 1);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+	}
+	x = (n % 10) + '0';
+	write (fd, &x, 1);
 }

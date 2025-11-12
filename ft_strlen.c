@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atabit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 20:00:40 by atabit            #+#    #+#             */
-/*   Updated: 2025/11/12 20:09:17 by atabit           ###   ########.fr       */
+/*   Created: 2025/10/15 09:54:12 by atabit            #+#    #+#             */
+/*   Updated: 2025/11/12 19:47:18 by atabit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main()
+size_t	ft_strlen(const char *str)
 {
-	printf("%d",ft_printf("cs%r%"));
-	printf("\n");
-	printf("%d",printf("cs%r%"));
+	size_t	l;
+
+	l = 0;
+	while (str[l])
+	{
+		l++;
+	}
+	return (l);
 }

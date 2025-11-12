@@ -57,6 +57,7 @@ void	put_hexa(char *str, int *l, int *i, va_list args)
 {
 	unsigned int	n;
 
+	(*i)++;
 	if ((str[*i] == 'x' || str[*i] == 'X'))
 	{
 		n = va_arg(args, unsigned int);
@@ -66,13 +67,17 @@ void	put_hexa(char *str, int *l, int *i, va_list args)
 			n = -n;
 		}
 		putnbrbase(n, "0123456789ABCDEF", l, str[*i]);
+		(*i)++;
 	}
+	else
+		(*i)--;
 }
 
 void	put_char_str(char *str, int *l, int *i, va_list args)
 {
 	char	*s;
 
+	(*i)++;
 	if (str[*i] == 's')
 	{
 		s = va_arg(args, char *);
@@ -80,16 +85,21 @@ void	put_char_str(char *str, int *l, int *i, va_list args)
 		{
 			ft_putstr_fd("(null)", 1);
 			(*l) += 6;
+			(*i)++;
 			return ;
 		}
 		ft_putstr_fd(s, 1);
 		(*l) += ft_strlen(s);
+		(*i)++;
 	}
 	else if (str[*i] == 'c')
 	{
 		ft_putchar_fd(va_arg(args, int), 1);
+		(*i)++;
 		(*l)++;
 	}
+	else
+		(*i)--;
 }
 
 void	put_int(char *str, int *l, int *i, va_list args)
@@ -97,15 +107,20 @@ void	put_int(char *str, int *l, int *i, va_list args)
 	unsigned int	a;
 	int				n;
 
+	(*i)++;
 	if ((str[*i] == 'd' || str[*i] == 'i'))
 	{
 		n = va_arg(args, int);
 		ft_putnbr_fd(n, 1);
 		(*l) += ft_nbrlen(n, "0123456789");
+		(*i)++;
 	}
-	if (str[*i] == 'u')
+	else if (str[*i] == 'u')
 	{
 		a = va_arg(args, unsigned int);
 		putnbrbase(a, "0123456789", l, str[*i]);
+		(*i)++;
 	}
+	else
+		(*i)--;
 }

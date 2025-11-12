@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atabit <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 20:00:40 by atabit            #+#    #+#             */
-/*   Updated: 2025/11/12 20:09:17 by atabit           ###   ########.fr       */
+/*   Created: 2025/10/22 22:10:31 by atabit            #+#    #+#             */
+/*   Updated: 2025/11/12 19:43:30 by atabit           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdio.h>
+#include "ft_printf.h"
 
-int	main()
+void	ft_putchar_fd(char c, int fd)
 {
-	printf("%d",ft_printf("cs%r%"));
-	printf("\n");
-	printf("%d",printf("cs%r%"));
+	write (fd, &c, 1);
 }
